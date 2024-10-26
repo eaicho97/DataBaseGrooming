@@ -1,0 +1,15 @@
+services:
+ db:
+    image: mysql:latest
+    container_name: mysql_db
+    restart: always
+    volumes:
+      - ./db/sql/create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql
+      - ./db/sql/insert_data.sql:/docker-entrypoint-initdb.d/insert_data.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: david123
+      MYSQL_DATABASE: dog_grooming_db
+      MYSQL_USER: david
+      MYSQL_PASSWORD: david123
+    ports:
+      - "3306:3306"
